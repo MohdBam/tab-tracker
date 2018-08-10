@@ -11,8 +11,11 @@ app.use(morgan("combined"));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get("/status",function(req,res){
-    res.send("Hello");
+app.post("/register",function(req,res){
+    res.send({
+        
+        mag : `Hello ${req.body.email} Your user was registered! Have fun!`
+    });
 })
 
 app.listen(port, function(){
