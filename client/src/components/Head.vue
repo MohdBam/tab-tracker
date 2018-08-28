@@ -1,11 +1,11 @@
 <template>
   <v-toolbar fixed class="cyan" dark>
       <v-toolbar-title class="mr-4">
-          <span class="home" @click="navigateTo({ name : 'route'})">TabTracker</span>
+          <span class="home" @click="navigateTo({ name : 'songs'})">TabTracker</span>
       </v-toolbar-title>
       <v-toolbar-items>
-          <v-btn flat dark>
-              Browse
+          <v-btn flat dark @click="navigateTo({ name : 'songs'})">
+              browse
           </v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
@@ -15,6 +15,9 @@
           </v-btn>
           <v-btn  v-if="!this.$store.state.isUserLoggedIn" flat dark @click="navigateTo({ name : 'register'})">
               sign up
+          </v-btn>
+          <v-btn  v-if="this.$store.state.isUserLoggedIn" flat dark @click="logout">
+              log out
           </v-btn>
       </v-toolbar-items>
   </v-toolbar>
@@ -31,6 +34,11 @@ export default {
   methods: {
     navigateTo(route){
         this.$router.push(route)
+    },
+    logout() {
+        this.$store.dispatch('setToken',null)
+        this.$store.dispatch('setUser',null)
+        this.$router.push({name: 'songs'})
     }
   }
 };

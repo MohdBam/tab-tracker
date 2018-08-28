@@ -1,13 +1,10 @@
 <template>
   <v-layout column>
     <v-flex  xs6 offset-xs3>
-      <div class="white elevation-2">
-        <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
-        </v-toolbar>
+      <panel title="Register">
+            
           
-  <form name="tab-tracker-form" autocomplete="off">
-        <div class="pl-4 pr-4 pt-2 pb-2">
+  <form slot="content" name="tab-tracker-form" autocomplete="off">
           <v-text-field
             label="Email" v-model="email"
           ></v-text-field>
@@ -18,10 +15,8 @@
     <br>
     <v-btn class="cyan" @click="register" dark>Register</v-btn>
     <div class="error" v-html="error"/>
-  </div>
   </form>
-      </div>
-
+        </panel>
     </v-flex>
   </v-layout>
 </template>
@@ -49,6 +44,9 @@ export default {
         this.$store
           .dispatch("setToken", response.data.token)
           .then(this.$store.dispatch("setUser", response.data.user));
+          this.$router.push({
+            name : 'songs'
+          })
       } catch (error) {
         this.error = error.response.data.error;
       }

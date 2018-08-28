@@ -30,10 +30,8 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-.flex.offset-xs3 {
-  margin-left: 25%;
-  margin-right: 25%;
-}
+
+
 
 
 </style>

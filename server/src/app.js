@@ -13,9 +13,11 @@ app.use(morgan("combined"));
 app.use(bodyParser.json());
 app.use(cors());
 
+require('./passport')
+
 require('./routes/routes.js')(app);
 
-sequelize.sync()
+sequelize.sync({force:false})
     .then(() => {
         app.listen(config.port, function () {
             console.log("Now listening to port " + config.port);
